@@ -25,4 +25,4 @@ jobs:
       run: dotnet build ConsoleApp1
       
     - name: Run tests
-      run: dotnet test
+      run: dotnet test ConsoleApp1/TestProject
