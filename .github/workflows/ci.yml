@@ -21,8 +21,10 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
       
+    - name: Restore
+      run: dotnet restore
     - name: Build
-      run: dotnet build ConsoleApp1
+      run: dotnet build
       
     - name: Run tests
-      run: dotnet test ConsoleApp1/TestProject
+      run: dotnet test
