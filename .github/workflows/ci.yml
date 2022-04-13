@@ -16,15 +16,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
       
-    - name: Restore
-      run: dotnet restore
-    - name: Build
-      run: dotnet build
-      
-    - name: Run tests
-      run: dotnet test
+    - name: Nuget restore
+      run: for f in $(find . -name "*.sln"); do nuget restore $f; done
+
+    - name: Build with dotnet
+      run: for f in $(find . -name "*.sln"); do dotnet build $f; done
+
+    - name: Run unit tests
+      run: for f in $(find . -name "*.sln"); do dotnet test $f; done
